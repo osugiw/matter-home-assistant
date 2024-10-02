@@ -1,3 +1,5 @@
+![Experiment Matter](https://github.com/user-attachments/assets/fc1b6580-8621-45db-9deb-f4f3e9bbd78b)
+
 ## Requirements
 
 * Raspberry Pi 4/5 installed with Home Assistant OS -> [Raspberry Pi - Home Assistant (home-assistant.io)](https://www.home-assistant.io/installation/raspberrypi/)
