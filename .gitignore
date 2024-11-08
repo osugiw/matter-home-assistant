@@ -1,1 +1,5 @@
 .vscode
+light/build
+light/managed_components
+light_switch/build
+light_switch/managed_components
