@@ -1,40 +1,50 @@
-# Light
+# Matter ESP32 Lighting Example
 
-This example creates a Color Temperature Light device using the ESP
-Matter data model.
+This example demonstrates the Matter Lighting application on ESP platforms.
 
-See the [docs](https://docs.espressif.com/projects/esp-matter/en/latest/esp32/developing.html) for more information about building and flashing the firmware.
+Please
+[setup ESP-IDF and CHIP Environment](../../../docs/platforms/esp32/setup_idf_chip.md)
+and refer
+[building and commissioning](../../../docs/platforms/esp32/build_app_and_commission.md)
+guides to get started.
 
-## 1. Additional Environment Setup
+### Enabling ESP-Insights:
 
-No additional setup is required.
+-   Before building the app, enable the option: ESP_INSIGHTS_ENABLED through
+    menuconfig.
 
-## 2. Post Commissioning Setup
+-   Create a file named insights_auth_key.txt in the main directory of the
+    example.
 
-No additional setup is required.
+-   Follow the steps present
+    [here](https://github.com/espressif/esp-insights/blob/main/examples/README.md#set-up-esp-insights-account)
+    to set up an insights_account and the auth key created while setting it up
+    will be used in the example.
 
-## 3. Device Performance
+-   Download the auth key and copy Auth Key to the example
 
-### 3.1 Memory usage
+```
+cp /path/to/auth/key.txt path/to/connectedhomeip/examples/lighting-app/esp32/main/insights_auth_key.txt
+```
 
-The following is the Memory and Flash Usage.
+### Cluster Control
 
--   `Bootup` == Device just finished booting up. Device is not
-    commissionined or connected to wifi yet.
--   `After Commissioning` == Device is conneted to wifi and is also
-    commissioned and is rebooted.
--   device used: esp32c3_devkit_m
--   tested on:
-    [6a244a7](https://github.com/espressif/esp-matter/commit/6a244a7b1e5c70b0aa1bf57254f19718b0755d95)
-    (2022-06-16)
+-   After successful commissioning, use the OnOff cluster command to control the
+    OnOff attribute. This allows you to toggle a parameter implemented by the
+    device to be On or Off.
 
-|                         | Bootup | After Commissioning |
-|:-                       |:-:     |:-:                  |
-|**Free Internal Memory** |108KB   |105KB                |
+        $ ./out/debug/chip-tool onoff on <NODE ID> 1
 
-**Flash Usage**: Firmware binary size: 1.26MB
+-   On
+    [ESP32C3-DevKitM](https://docs.espressif.com/projects/esp-idf/en/latest/esp32c3/hw-reference/esp32c3/user-guide-devkitm-1.html)
+    or
+    [ESP32S3-DevKitM](https://docs.espressif.com/projects/esp-idf/en/latest/esp32s3/hw-reference/esp32s3/user-guide-devkitm-1.html)
+    board, there is an on-board RGB-LED. Use ColorControl cluster command to
+    control the color attributes:
 
-This should give you a good idea about the amount of free memory that is
-available for you to run your application's code.
+        $ ./out/debug/chip-tool colorcontrol move-to-hue-and-saturation 240 100 0 0 0 <NODE ID> 1
 
-Applications that do not require BLE post commissioning, can disable it using app_ble_disable() once commissioning is complete. It is not done explicitly because of a known issue with esp32c3 and will be fixed with the next IDF release (v4.4.2).
+### Matter OTA
+
+For Matter OTA please take a look at
+[Matter OTA guide](../../../docs/platforms/esp32/ota.md).

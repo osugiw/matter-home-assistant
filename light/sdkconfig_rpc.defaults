@@ -1,5 +1,6 @@
 #
-#    Copyright (c) 2021 Project CHIP Authors
+#    Copyright (c) 2020 Project CHIP Authors
+#    Copyright (c) 2018 Nest Labs, Inc.
 #    All rights reserved.
 #
 #    Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,9 +16,8 @@
 #    limitations under the License.
 #
 #    Description:
-#      Some useful defaults for the demo app configuration.
+#      CI uses this to select the ESP32C3-DevKitM.
 #
-
 # Default to 921600 baud when flashing and monitoring device
 CONFIG_ESPTOOLPY_BAUD_921600B=y
 CONFIG_ESPTOOLPY_BAUD=921600
@@ -29,14 +29,8 @@ CONFIG_ESPTOOLPY_MONITOR_BAUD=115200
 CONFIG_BT_ENABLED=y
 CONFIG_BT_NIMBLE_ENABLED=y
 
-#disable BT connection reattempt
-CONFIG_BT_NIMBLE_ENABLE_CONN_REATTEMPT=n
-
 #enable lwip ipv6 autoconfig
 CONFIG_LWIP_IPV6_AUTOCONFIG=y
-
-#enable debug shell
-CONFIG_ENABLE_CHIP_SHELL=y
 
 # Use a custom partition table
 CONFIG_PARTITION_TABLE_CUSTOM=y
@@ -50,17 +44,18 @@ CONFIG_LWIP_HOOK_ND6_GET_GW_DEFAULT=y
 CONFIG_ESPTOOLPY_FLASHSIZE_4MB=y
 CONFIG_ESPTOOLPY_FLASHSIZE="4MB"
 
-# Disable softap support by default
-CONFIG_ESP_WIFI_SOFTAP_SUPPORT=n
-# This example uses the older version of RMT driver to work with both
-# idf-v4.4.3 and idf-v5.0, so suppressing the warnings by setting below option
-CONFIG_RMT_SUPPRESS_DEPRECATE_WARN=y
+# PW RPC Debug channel
+CONFIG_EXAMPLE_UART_PORT_NUM=0
+CONFIG_EXAMPLE_UART_BAUD_RATE=115200
+CONFIG_EXAMPLE_UART_RXD=3
+CONFIG_EXAMPLE_UART_TXD=1
+CONFIG_ENABLE_PW_RPC=y
 
 # Enable HKDF in mbedtls
 CONFIG_MBEDTLS_HKDF_C=y
 
-# Disable Read Client
-CONFIG_DISABLE_READ_CLIENT=y
+CONFIG_DIAG_USE_EXTERNAL_LOG_WRAP=y
 
-# Increase LwIP IPv6 address number
-CONFIG_LWIP_IPV6_NUM_ADDRESSES=6
+CONFIG_FREERTOS_PLACE_FUNCTIONS_INTO_FLASH=y
+CONFIG_RINGBUF_PLACE_FUNCTIONS_INTO_FLASH=y
+CONFIG_RINGBUF_PLACE_ISR_FUNCTIONS_INTO_FLASH=y
