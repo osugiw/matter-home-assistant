@@ -129,6 +129,10 @@ Click configure and add the OpenThread network dataset. Then, click the three do
 
 ![1725009372837](image/README/1725009372837.png)
 
+The Border router will then elect itself as the Thread Leader
+
+![1731551030948](image/README/1731551030948.png)
+
 ## Commission Matter Devices
 
 The BR is ready to be used and we can add Matter Devices using Home Assistant application. Open your mobile application and navigate to `Settings > Devices & Services > Devices` and click **Add Device** and choose **Add Matter Device.** Do these steps for each Matter device.
@@ -145,6 +149,14 @@ At this point your dashboard will look like this and you can control the devices
 
 | ![1725009966835](image/README/1725009966835.png) | ![1725010006634](image/README/1725010006634.png) | ![1725010152213](image/README/1725010152213.png) |
 | ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+
+Now the network has the topology as follows, which shown on the border router web server:
+
+![1731550997184](image/README/1731550997184.png)
+
+When we control the End Device, in this case is light, through OpenThread, the BorderRouter will pass the data.
+
+![1731551099543](image/README/1731551099543.png)
 
 Optionally, you can also add automation to trigger the LED when the switch is pressed. You can do this by navigating to **Automation Page** and configure as follows:
 
